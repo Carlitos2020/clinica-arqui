@@ -4,13 +4,12 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <!-- Brand imagen de logo al entrar-->
+        <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('home') }}">
-            <img src="{{ asset('argon') }}/img/brand/logo.png" class="navbar-brand-img" alt="...">
-
+            <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="...">
         </a>
-        <!-- User  imagen de perfil circulo ariba-->
-        <ul class="nav align-items-center d-md-none">
+        <!-- User -->
+        <!-- <ul class="nav align-items-center d-md-none">
             <li class="nav-item dropdown">
                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">
@@ -47,7 +46,7 @@
                     </a>
                 </div>
             </li>
-        </ul>
+        </ul> -->
         <!-- Collapse -->
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
             <!-- Collapse header -->
@@ -67,7 +66,7 @@
                 </div>
             </div>
             <!-- Form -->
-            <form class="mt-4 mb-3 d-md-none">
+            <!-- <form class="mt-4 mb-3 d-md-none">
                 <div class="input-group input-group-rounded input-group-merge">
                     <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="{{ __('Search') }}" aria-label="Search">
                     <div class="input-group-prepend">
@@ -76,67 +75,106 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            </form> -->
             <!-- Navigation -->
             <ul class="navbar-nav">
+                @if (auth()->user()->email == 'admin@gmail.com')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">
                         <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
+                <!-- --------------PACIENTES -------- -->
                 <li class="nav-item">
-                    <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
-                        <i class="fab fa-laravel" style="color: #f4645f;"></i>
-                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Laravel Examples') }}</span>
+                    <a class="nav-link" href="#navbar-pacientes" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-pacientes">
+                        <i class="ni ni-circle-08" style="color: #f4645f;"></i>
+                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Pacientes') }}</span>
                     </a>
 
-                    <div class="collapse show" id="navbar-examples">
+                    <div class="collapse show" id="navbar-pacientes">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('profile.edit') }}">
-                                    {{ __('User profile') }}
+                                <a class="nav-link" href="{{ route('user.create') }}">
+                                    {{ __('Crear Usuario') }}
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('user.index') }}">
-                                    {{ __('User Management') }}
+                                    {{ __('Gestión de Pacientes') }}
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
+                 <!-- --------------MEDICOS -------- -->
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#navbar-medicos" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-medicos">
+                        <i class="ni ni-circle-08" style="color: #0000ff;"></i>
+                        <span class="nav-link-text" style="color: #0000ff;">{{ __('Medicos') }}</span>
+                    </a>
+
+                    <div class="collapse show" id="navbar-medicos">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('profile.edit') }}">
+                                    {{ __('Perfil de Medico') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.index') }}">
+                                    {{ __('Gestion de Medicos') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                 <!-- -------------- -------- -->
+               
+                @else
 
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <i class="ni ni-planet text-blue"></i> {{ __('Icons') }}
+                        <i class="ni ni-shop text-blue"></i> {{ __('Inicio') }}
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('profile.edit') }}">
+                        <i class="ni ni-single-02 text-blue"></i> {{ __('Mi Perfil') }}
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="ni ni-single-copy-04 text-orange"></i> {{ __('Historial Medico') }}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <i class="ni ni-pin-3 text-orange"></i> {{ __('Maps') }}
+                        <i class="ni ni-time-alarm text-info"></i> {{ __('Análisis Programados') }}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <i class="ni ni-key-25 text-info"></i> {{ __('Login') }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="ni ni-circle-08 text-pink"></i> {{ __('Register') }}
+                        <i class="ni ni-calendar-grid-58 text-pink"></i> {{ __('Reservas Cita') }}
                     </a>
                 </li>
                 <li class="nav-item mb-5" style="position: absolute; bottom: 0;">
-                    <a class="nav-link" href="https://www.creative-tim.com/product/argon-dashboard-pro-laravel" target="_blank">
-                        <i class="ni ni-cloud-download-95"></i> Upgrade to PRO
+                    <a class="nav-link" href="#" target="_blank">
+                        <i class="ni ni-active-40"></i> Arquitectura de Software
                     </a>
                 </li>
+                @endif
             </ul>
             <!-- Divider -->
             <hr class="my-3">
-            <!-- Heading -->
+
+
+
+            <!-- Heading 
             <h6 class="navbar-heading text-muted">Documentation</h6>
-            <!-- Navigation -->
+      
             <ul class="navbar-nav mb-md-3">
                 <li class="nav-item">
                     <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
@@ -154,6 +192,8 @@
                     </a>
                 </li>
             </ul>
+            -->
+
         </div>
     </div>
 </nav>
